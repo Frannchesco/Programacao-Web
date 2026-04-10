@@ -224,7 +224,7 @@ function iniciar(modo) {
     tentativas = 0;
     jogoAtivo = true;
     tempo = 0;
-    tempoIniciado = false;      // 🔥 reseta flag
+    tempoIniciado = false;    
 
     document.getElementById("menu").style.display = "none";
     document.getElementById("jogo").style.display = "block";
@@ -236,7 +236,6 @@ function iniciar(modo) {
     limpar();
     mostrarRanking();
     
-    // Garante que o tempo exibido seja 0s
     document.getElementById("tempo").innerText = "⏱️ Tempo: 0s";
     if (intervalo) clearInterval(intervalo);
 }
