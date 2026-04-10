@@ -7,9 +7,8 @@ let intervalo;
 let input;
 let box;
 let audioCtx = null;
-let tempoIniciado = false;  // 🔥 NOVA FLAG
+let tempoIniciado = false; 
 
-// Inicialização
 window.onload = () => {
     input = document.getElementById("palpite");
     box = document.getElementById("feedback-box");
@@ -22,8 +21,7 @@ window.onload = () => {
     mostrarRanking();
     iniciarAudio();
 };
-
-// ========== SONS (Web Audio API) ==========
+//Sons
 function iniciarAudio() {
     try {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -59,7 +57,7 @@ function somVitoria() {
     setTimeout(() => playBeep(783.99, 0.4, 0.3), 500); // Sol
 }
 
-// ========== CONFETES ==========
+//confetes
 let confettiActive = false;
 let confettiParticles = [];
 let confettiAnimation = null;
@@ -124,7 +122,6 @@ function startConfetti() {
     }, 4000);
 }
 
-// ========== RANKINGS (localStorage) ==========
 function carregarRankings() {
     const chaves = ["ranking_tempo_facil", "ranking_tempo_dificil", "ranking_tentativas_facil", "ranking_tentativas_dificil"];
     chaves.forEach(chave => {
@@ -220,7 +217,6 @@ function mostrarRanking() {
     }
 }
 
-// ========== JOGO ==========
 function iniciar(modo) {
     somClick();
     modoAtual = modo;
@@ -237,7 +233,6 @@ function iniciar(modo) {
     box.style.display = modo === "facil" ? "flex" : "none";
     if (modo === "facil") box.style.backgroundColor = "#2d3a4e";
 
-    // 🔥 NÃO chama iniciarTempo() aqui
     limpar();
     mostrarRanking();
     
@@ -267,7 +262,6 @@ function verificar() {
         return;
     }
 
-    // 🔥 Primeira tentativa: inicia o cronômetro
     if (!tempoIniciado && tentativas === 0) {
         tempoIniciado = true;
         iniciarTempo();
@@ -330,7 +324,7 @@ function reiniciar() {
     tentativas = 0;
     jogoAtivo = true;
     tempo = 0;
-    tempoIniciado = false;      // 🔥 reseta flag
+    tempoIniciado = false;  
     clearInterval(intervalo);
     // NÃO chama iniciarTempo() aqui
     input.disabled = false;
